@@ -14,5 +14,5 @@ int main()
 		if (c == '\n')
 			++nl;
 	}
-	printf("Blanks: %d\nTab: %d\nNewline: %d\n", nb, nt, nl);
+	printf("Blanks: %d\nTabs: %d\nNewlines: %d\n", nb, nt, nl);
 }
