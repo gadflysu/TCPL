@@ -1,18 +1,18 @@
 #include <stdio.h>
 
-/*  Count the number of characters ' ', '\t' and '\n' in the input  */
+/*  count blanks, tabs, and newlines  */
 
 int main()
 {
 	int c;
-	int ns, nt, nl = 0;
+	int nb, nt, nl = 0;  /*  number of blanks, tabs, newlines  */
 	while ((c = getchar()) != EOF) {
 		if (c == ' ')
-			++ns;
-		else if (c == '\t')
+			++nb;
+		if (c == '\t')
 			++nt;
-		else if (c == '\n')
+		if (c == '\n')
 			++nl;
 	}
-	printf("Space: %d\nTab: %d\nNewline: %d\n", ns, nt, nl);
+	printf("Blanks: %d\nTab: %d\nNewline: %d\n", nb, nt, nl);
 }
