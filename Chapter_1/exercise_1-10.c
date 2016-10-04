@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+/*  replace tabs and backspace with visible characters  */
+
 int main()
 {
         int c;
@@ -16,4 +18,3 @@ int main()
 	
 	return 0;
 }
-
