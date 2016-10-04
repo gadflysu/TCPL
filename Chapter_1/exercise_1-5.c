@@ -1,7 +1,6 @@
 #include <stdio.h>
 
-/*  print Fahrenheit-Celsius table
-    for fahr = 300, 280, . . ., 0; floating-point version  */
+/*  print Fahrenheit-Celsius table in reverse order  */
     
 int main()
 {
