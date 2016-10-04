@@ -1,9 +1,9 @@
 #include <stdio.h>
 
-#define IN 1
-#define OUT 0
+#define IN  1  /*  inside a word   */
+#define OUT 0  /*  outside a word  */
 
-/*  print the input with one word per line  */
+/*  print input one word per line  */
 
 int main()
 {
@@ -11,21 +11,17 @@ int main()
 	
 	state = OUT;
 	while ((c = getchar()) != EOF) {
-		if (c == ' ' || c == '\n' || c == '\t')
+		if (c == ' ' || c == '\n' || c == '\t') {
 			if (state == IN) {
 				state = OUT;
-				putchar(c);
-				printf("\n");
+				putchar('\n');  /*  finish the word  */
 			}
-			else
-				;
-		else {
+		} else {
 			putchar(c);
 			if (state == OUT)
-				state = IN;
+				state = IN;     /*  beginning of word  */
 		}
 	}
 	
 	return 0;
 }
-
