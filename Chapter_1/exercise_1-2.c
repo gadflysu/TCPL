@@ -1,6 +1,5 @@
 #include <stdio.h>
 
-
 /*  Print with "/?"  */
 
 int main()
