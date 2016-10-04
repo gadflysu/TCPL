@@ -1,16 +1,19 @@
 #include <stdio.h>
 
-/*  copy input to output and reduce the whitespaces to leave only a single space  */
+#define NONBLANK 'a'
+
+/*  replace a string of blanks with a single blank  */
 
 int main()
 {
 	int c;
-	int nb = 0;
+	int lastc = NONBLANK;
+	
 	while ((c = getchar()) != EOF) {
-		if (c == ' ')
-			++nb;
-		else nb = 0;
-		if (nb <= 1)
+		if (c != ' ' || lastc != ' ')
 			putchar(c);
+		lastc = c;
 	}
+	
+	return 0;
 }
