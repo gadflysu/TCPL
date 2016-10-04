@@ -2,6 +2,7 @@
 
 int main()
 {
-	int c = EOF;
-	printf("%d", c);
+	printf("EOF is %d\n", EOF);
+	
+	return 0;
 }
