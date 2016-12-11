@@ -5,7 +5,6 @@
 #define IN  	1	/*  inside a word		*/
 #define OUT 	0	/*  outside a word		*/
 
-/*  print horizontal histogram				*/
 int main()
 {
         int c, i, nc, state;
@@ -36,6 +35,8 @@ int main()
 	for (i = 1; i < MAXWORD; ++i)
 		if (wl[i] > maxvalue)
 			maxvalue = wl[i];
+
+/*  print horizontal histogram	*/
 	for (i = 1; i < MAXWORD; ++i) {
 		printf("%5d - %5d : ", i, wl[i]);
 		if (wl[i] > 0) {
@@ -49,6 +50,26 @@ int main()
 		}
 		putchar('\n');
 	}
+	if (overflow > 0)
+		printf("There are %d words >= %d\n", overflow, MAXWORD);
+
+/*  print vertical histogram  */
+        int j;
+        
+        for (i = MAXHIST; i > 0; --i) {
+        	for (j = 1; j < MAXWORD; ++j)
+			if (wl[j]*MAXHIST/maxvalue >= i)
+				printf(" * ");
+			else
+				printf("   ");
+		putchar('\n');
+	}
+	for (i = 1; i < MAXWORD; ++i)
+		printf("%2d ", i);
+	putchar('\n');
+	for (i = 1; i < MAXWORD; ++i)
+		printf("%2d ", wl[i]);
+	putchar('\n');
 	if (overflow > 0)
 		printf("There are %d words >= %d\n", overflow, MAXWORD);
 
