@@ -4,10 +4,10 @@
 int getline(char line[], int maxline);
 void reverse(char s[]);
 
-/*  reverse character string s		*/
+/*  reverse input lines, a line at a time		*/
 int main()
 {
-	char s[MAXLINE];
+	char s[MAXLINE];        /*  current input line	*/
 
 	while (getline(s, MAXLINE) > 0) {
 		reverse(s);
@@ -31,15 +31,17 @@ int getline(char s[], int lim)
 	return i;
 }
 
-/*  reverse character line			*/
+/*  reverse: reverse character line		*/
 void reverse(char s[])
 {
 	int i, n;
 	
 	n = -1;
-	while (s[++n] != '\0')
+	while (s[++n] != '\0')          /*  find the end of string s	*/
 		;
-	for (i = 0; i < n/2; ++i) {
+	if (s[n-1] == '\n')             /*  leaving new line in place	*/
+		--n;
+	for (i = 0; i < n/2; ++i) {     /* swap the characters		*/
 		int temp = s[i];
 		s[i] = s[n-1-i];
 		s[n-1-i] = temp;
