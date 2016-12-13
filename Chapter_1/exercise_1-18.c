@@ -2,26 +2,16 @@
 #define MAXLINE 1000    /*  maxmium input line size	*/
 
 int getline(char line[], int maxline);
-void copy(char to[], char from[]);
+int rm(char s[]);
 
-/*  print longest input line  */
+/*  remove trailing blanks and tabs, delete blank lines		*/
 int main()
 {
-	int len;		/*  current line length		*/
-	int max;                /*  maxmium length seen so far  */
 	char line[MAXLINE];     /*  current input line		*/
-	char longest[MAXLINE];  /*  longest line saved here	*/
 
-	max = 0;
-	while ((len = getline(line, MAXLINE)) > 0) {
-		printf("%d %s", len, line);
-		if (len > max) {
-			max = len;
-			copy(longest, line);
-		}
-	}
-	if (max > 0)            /* there was a line		*/
-		printf("%s", longest);
+	while (getline(line, MAXLINE) > 0)
+		if (rm(line) > 0)
+			printf("%s", line);
 
 	return 0;
 }
@@ -33,25 +23,28 @@ int getline(char s[], int lim)
 
 	for (i = 0; i < lim-1 && (c = getchar()) != EOF && c != '\n'; ++i)
 		s[i] = c;
-
-	int j = i;
-	while ((j > 0) && (s[j-1] == ' ' || s[j-1] == '\t'))
-		--j;
-	if (c == '\n') {
-		++i;
-		if (j > 0)
-			s[j++] = c;
-	}
-	s[j] = '\0';
+	if (c == '\n')
+		s[i++] = c;
+	s[i] = '\0';
 
 	return i;
 }
-/*  copy: copy 'from' into 'to'; assumed to is big enough */
-void copy(char from[], char to[])
+
+/*  remove trailing blanks and tabs from character steing s	*/
+int rm(char s[])
 {
 	int i;
-
+	
 	i = 0;
-	while ((to[i] = from[i]) != '\0')
+	while (s[i] != '\n')    /*  find new line character	*/
 		++i;
+	--i;                    /*  back off from '\n'		*/
+	while (i >= 0 && (s[i] == ' ' || s[i] == '\t'))
+		--i;
+	if (i >= 0) {           /*  is it a nonblank line?	*/
+		s[++i] = '\n';  /*  put newline character back	*/
+		s[++i] = '\0';  /*  terminate the string	*/
+	}
+	
+	return i;
 }
