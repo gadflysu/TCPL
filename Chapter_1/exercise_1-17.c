@@ -1,19 +1,17 @@
 #include <stdio.h>
 #define MAXLINE 1000    /*  maxmium input line size	*/
-#define LIM 80
+#define LONGLINE 80
 
 int getline(char line[], int maxline);
-void copy(char to[], char from[]);
 
-/*  print longest input line  */
+/*  print lines longer than LONGLINE  */
 int main()
 {
-	int len;               /*  current line length		*/
+	int len;                /*  current line length		*/
 	char line[MAXLINE];     /*  current input line		*/
-	char longest[MAXLINE];  /*  longest line saved here	*/
 
 	while ((len = getline(line, MAXLINE)) > 0)
-		if (len > LIM)
+		if (len > LONGLINE)
 			printf("%s", line);
 
 	return 0;
