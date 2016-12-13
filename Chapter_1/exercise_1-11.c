@@ -1,4 +1,3 @@
-
 /* How to test the word count program: (maybe)
  *  1. no input;
  *  2. no words, only newlines;
