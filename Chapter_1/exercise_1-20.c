@@ -1,24 +1,27 @@
 #include <stdio.h>
 
+#define TABINC 8        /*  tab increment size		*/
+
+/*  erplace tabs with the proper number of blanks	*/
 int main()
 {
-        int c, nc;
-        int i, n;
+        int c, nb, pos;
         
-        nc = 0;
-        n = 8;
+        pos = 0;
         while ((c = getchar()) != EOF) {
-		if (c == '\t') {
-			for (i = 0; i < (n - nc%n); ++i)
+		if (c == '\t') {                        /*  tab character		*/
+			int nb = (TABINC - pos%TABINC);	/*  number of blanks necessary	*/
+			while (nb > 0) {
 				putchar(' ');
-			nc = 0;
-		}
-		else {
+				++pos;
+				--nb;
+			}
+		} else if (c == '\n') {       		/*  new line character		*/
 			putchar(c);
-			if (c == '\n')
-				nc = 0;
-			else
-				++nc;
+			pos = 0;
+		} else {                        	/* all other character		*/
+			putchar(c);
+			++pos;
 		}
 	}
 
